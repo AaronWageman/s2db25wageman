@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  p A change has been made. Welcome to my assignment.
+  button(type="button"
+    class="btn btn-success" 
+    onClick="moreclaps()"
+  ) Press Me
+
+  div(id="target") Clap for me
+
+  script.
+      clap_count = 0;
+      function moreclaps(){
+        clap_count += 2;
+        document.getElementById("target").innerHTML = "Clap " + clap_count + " times";
+      }
+  
+  a(href="https://s2wb25wageman.herokuapp.com/entree") Link to Entree
+
+
