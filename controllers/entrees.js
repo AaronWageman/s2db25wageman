@@ -1,8 +1,19 @@
 var Entree = require('../models/entree'); 
  
 // List of all Costumes 
-exports.entree_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Entree list'); 
+//exports.entree_list = function(req, res) { 
+    //res.send('NOT IMPLEMENTED: Entree list'); 
+//}; 
+// List of all Costumes 
+exports.entree_list = async function(req, res) { 
+    try{ 
+        theEntrees = await Entree.find(); 
+        res.send(theEntrees); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
 }; 
  
 // for a specific Costume. 
