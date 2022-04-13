@@ -34,3 +34,16 @@ exports.entree_delete = function(req, res) {
 exports.entree_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: Entree update PUT' + req.params.id); 
 };
+
+// VIEWS 
+// Handle a show all view 
+exports.entree_view_all_Page = async function(req, res) { 
+    try{ 
+        theEntrees = await Entree.find(); 
+        res.render('entree', { title: 'Entree Search Results', results: theEntrees }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
