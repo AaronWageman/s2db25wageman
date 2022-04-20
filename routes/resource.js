@@ -29,5 +29,9 @@ router.get('/entrees/:id', entree_controller.entree_detail);
 // GET request for list of all Costume items. 
 router.get('/entree', entree_controller.entree_list); 
 
+//GET create costume page */ 
+router.get('/create', entree_controller.entree_create_Page); 
+ 
+
  
 module.exports = router; 
