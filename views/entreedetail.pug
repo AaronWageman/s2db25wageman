@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let entreeid = toShow._id 
+  - let entree_name = toShow.name 
+  - let entreecost = toShow.cost 
+  - let entreecalories = toShow.calories
+  div 
+    div.row 
+      div(class='entreeAttr mr-3') Entree ID is: 
+      div #{entreeid} 
+    div.row 
+      div(class='entreeAttr mr-3') Entree Name is: 
+      div #{entree_name} 
+    div.row 
+      div(class='entreeAttr mr-3') Entree Calories is: 
+      div #{entreecalories} 
+    div.row 
+      div(class='entreeAttr mr-3') Entree Cost is: 
+      div #{entreecost} 

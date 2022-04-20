@@ -59,9 +59,23 @@ exports.entree_create_post = async function(req, res) {
 }; 
  
 // Handle Costume delete form on DELETE. 
-exports.entree_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Entree delete DELETE ' + req.params.id); 
+//exports.entree_delete = function(req, res) { 
+  //  res.send('NOT IMPLEMENTED: Entree delete DELETE ' + req.params.id); 
+//}; 
+
+// Handle Costume delete on DELETE. 
+exports.entree_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Entree.findByIdAndDelete(req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
 }; 
+
 // Handle Costume update form on PUT. 
 //exports.entree_update_put = function(req, res) { 
   //  res.send('NOT IMPLEMENTED: Entree update PUT' + req.params.id); 
@@ -97,4 +111,18 @@ exports.entree_view_all_Page = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+}; 
+
+// Handle a show one view with id specified by query 
+exports.entree_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Entree.findById( req.query.id) 
+        res.render('entreedetail',  
+{ title: 'Entree Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
 }; 

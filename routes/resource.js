@@ -9,7 +9,9 @@ var entree_controller = require('../controllers/entrees.js');
 
 // GET resources base. 
 router.get('/', api_controller.api); 
- 
+
+/* GET detail costume page */ 
+router.get('/detail', entree_controller.entree_view_one_Page); 
 /// COSTUME ROUTES /// 
  
 // POST request for creating a Costume.  
@@ -22,7 +24,7 @@ router.delete('/entrees/:id', entree_controller.entree_delete);
 router.put('/entrees/:id', entree_controller.entree_update_put); 
  
 // GET request for one Costume. 
-router.get('/entrees/:id', entree_controller.entree_detail); 
+router.get('/entrees/:id', entree_controller.entree_detail);
  
 // GET request for list of all Costume items. 
 router.get('/entree', entree_controller.entree_list); 
