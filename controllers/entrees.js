@@ -139,4 +139,32 @@ exports.entree_create_Page =  function(req, res) {
         res.status(500) 
         res.send(`{'error': '${err}'}`); 
     } 
+};
+
+// Handle building the view for updating a costume. 
+// query provides the id 
+exports.entree_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Entree.findById(req.query.id) 
+        res.render('entreeupdate', { title: 'Entree Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle a delete one view with id from query 
+exports.entree_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Entree.findById(req.query.id) 
+        res.render('entreedelete', { title: 'Entree Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
 }; 

@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let entreeid = toShow._id 
+  - let entree_name = toShow.name 
+  - let entreecost = toShow.cost 
+  - let entreecalories = toShow.calories 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{entreeid} 
+  - let actionid = "/resource/entrees/" + entreeid 
+  form(id='EntreeForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.entreeAttr(for='name') Entree name 
+        input#name(type='text', name='name', value= entree_name ) 
+    div.form-group 
+        label.entreeAttr(for='calories') Entree calories 
+        input#size(type='text', name='calories', value= entreecalories ) 
+    div.form-group 
+        label.entreeAttr(for='cost') Entree cost 
+        input#cost(type='number' step='any', name='cost', value= entreecost ) 
+    input(type="submit") 
+ 
+  script.
+    document.forms['EntreeForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 
