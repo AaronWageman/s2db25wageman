@@ -118,8 +118,7 @@ exports.entree_view_one_Page = async function(req, res) {
     console.log("single view for id "  + req.query.id) 
     try{ 
         result = await Entree.findById( req.query.id) 
-        res.render('entreedetail',  
-{ title: 'Entree Detail', toShow: result }); 
+        res.render('entreedetail',  { title: 'Entree Detail', toShow: result }); 
     } 
     catch(err){ 
         res.status(500) 
@@ -132,7 +131,7 @@ exports.entree_view_one_Page = async function(req, res) {
 // Does not need to be async 
 exports.entree_create_Page =  function(req, res) { 
     console.log("create view") 
-    try{ 
+    try{
         res.render('entreecreate', { title: 'Entree Create'}); 
     } 
     catch(err){ 

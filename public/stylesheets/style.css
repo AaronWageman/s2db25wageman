@@ -10,4 +10,15 @@ a {
 .entreeAttr { 
   background-color: aquamarine; 
   width: 120px; 
-} 
+}
+
+.tblDiv {
+  border-color: blue;
+  border-style: solid;
+  border-width: 5px;
+}
+
+.hello {
+  color: red;
+  background-color: black;
+}
