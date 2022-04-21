@@ -2,12 +2,24 @@ extends layout
 
 block content
   h1= title
+  - let items = results; 
+  div(class="container-fluid") 
+    div(class="row m-1") 
+      each item in items
+        - let destination = `dispatch(\"resource/update/?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.calories}) is #{item.cost}
+          button.btn( class="btn-primary ml-1", onclick=destination) Update
   
-  -var result = [{name:'Cheeseburger', calories: 500, cost: 5.99}, {name:'Taco', calories: 450, cost: 3.99}, {name:'8 Chicken Wings', calories: 600, cost: 6.99}];
-  -var index = 1;
-  -var items = results;
-  div(class="container-fluid")
-  div(class="row") 
+  script.
+    function dispatch(path){
+      window.location.href = path
+    } 
+  
+  //-var result = [{name:'Cheeseburger', calories: 500, cost: 5.99}, {name:'Taco', calories: 450, cost: 3.99}, {name:'8 Chicken Wings', calories: 600, cost: 6.99}];
+  //-var index = 1;
+  //-var items = results;
+  //div(class="container-fluid")
+  //div(class="row") 
     each item in items
       -var name = item.name;var calories = item.calories;var cost = item.cost;
       -console.log(item);
