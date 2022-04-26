@@ -31,9 +31,18 @@ router.get('/entree', entree_controller.entree_list);
 
 //GET create costume page */ 
 router.get('/create', entree_controller.entree_create_Page); 
+const secured = (req, res, next) => { 
+    if (req.user){ 
+      return next(); 
+    } 
+    req.session.returnTo = req.originalUrl; 
+    res.redirect('/login'); 
+  } 
+
  
 /* GET create update page */ 
-router.get('/update', entree_controller.entree_update_Page);
+router.get('/update', secured, entree_controller.entree_update_Page);
+
 
 /* GET delete costume page */ 
 router.get('/delete', entree_controller.entree_delete_Page);

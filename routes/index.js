@@ -43,6 +43,8 @@ router.get('/login', function(req, res) {
 }); 
  
 router.post('/login', passport.authenticate('local'), function(req, res) { 
+    if(req.session.returnTo)
+      res.redirect(req.session.returnTo);
     res.redirect('/'); 
 }); 
  
@@ -54,5 +56,5 @@ router.get('/logout', function(req, res) {
 router.get('/ping', function(req, res){ 
     res.status(200).send("pong!"); 
 }); 
- 
+
 module.exports = router; 
