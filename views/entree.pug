@@ -2,13 +2,22 @@ extends layout
 
 block content
   h1= title
-  - let items = results; 
+  - let items = results;
+  - let desCreate = `dispatch(\"resource/create\")`
   div(class="container-fluid") 
+    button.btn.btn-primary(type='submit', onclick=desCreate) Create Entree 
+    a(href='resource/create') 
     div(class="row m-1") 
       each item in items
         - let destination = `dispatch(\"resource/update/?id=${item._id}\")`
+        - let destination2 = `dispatch(\"resource/detail/?id=${item._id}\")`
+        - let destination3 = `dispatch(\"resource/delete/?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Item #{item.name} (#{item.calories} calories) is #{item.cost}
           button.btn( class="btn-primary ml-1", onclick=destination) Update
+          button.btn( class="btn-primary ml-1", onclick=destination2) Detail
+          button.btn( class="btn-primary ml-1", onclick=destination3) Delete
+
+
   
   script.
     function dispatch(path){
