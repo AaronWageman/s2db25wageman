@@ -29,8 +29,6 @@ router.get('/entrees/:id', entree_controller.entree_detail);
 // GET request for list of all Costume items. 
 router.get('/entree', entree_controller.entree_list); 
 
-//GET create costume page */ 
-router.get('/create', entree_controller.entree_create_Page); 
 const secured = (req, res, next) => { 
     if (req.user){ 
       return next(); 
@@ -39,13 +37,15 @@ const secured = (req, res, next) => {
     res.redirect('/login'); 
   } 
 
- 
+//GET create costume page */ 
+router.get('/create', secured, entree_controller.entree_create_Page); 
+
 /* GET create update page */ 
 router.get('/update', secured, entree_controller.entree_update_Page);
 
 
 /* GET delete costume page */ 
-router.get('/delete', entree_controller.entree_delete_Page);
+router.get('/delete', secured, entree_controller.entree_delete_Page);
 
  
 module.exports = router; 
